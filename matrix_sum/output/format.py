@@ -27,10 +27,13 @@ class JsonFormat(ABCFormat):
 
 class ABCFormatFactory(ABC):
     @abstractmethod
-    def __call__(self, matrix: ABCMinimalMatrix) -> ABCFormat:
+    def __call__(self) -> ABCFormat:
         pass
 
 
 class JsonFormatFactory(ABC):
-    def __call__(self, matrix: ABCMinimalMatrix) -> ABCFormat:
-        return JsonFormat(matrix=matrix)
+    def __init__(self, matrix: ABCMinimalMatrix) -> None:
+        self._matrix = matrix
+
+    def __call__(self) -> ABCFormat:
+        return JsonFormat(matrix=self._matrix)
