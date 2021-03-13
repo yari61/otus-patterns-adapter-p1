@@ -1,0 +1,2 @@
+numpy
+dependency-injector
