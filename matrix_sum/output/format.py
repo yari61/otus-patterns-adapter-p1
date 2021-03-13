@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from json import dumps
 
 from matrix_sum.matrix import ABCMinimalMatrix
+from matrix_sum.matrix.extensions import ToList
 
 
 class ABCFormat(ABC):
@@ -16,12 +17,8 @@ class JsonFormat(ABCFormat):
         self._matrix = matrix
 
     def __call__(self) -> str:
-        matrix_like = list()
-        for i in range(0, self._matrix.get_shape()[0]):
-            row_like = list()
-            for j in range(0, self._matrix.get_shape()[1]):
-                row_like.append(self._matrix.get_cell(i, j))
-            matrix_like.append(row_like)
+        to_list = ToList(matrix=self._matrix)
+        matrix_like = to_list()
         return dumps(matrix_like)
 
 
@@ -31,7 +28,7 @@ class ABCFormatFactory(ABC):
         pass
 
 
-class JsonFormatFactory(ABC):
+class JsonFormatFactory(ABCFormatFactory):
     def __init__(self, matrix: ABCMinimalMatrix) -> None:
         self._matrix = matrix
 
