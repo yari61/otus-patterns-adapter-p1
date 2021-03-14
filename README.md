@@ -32,3 +32,22 @@ python -m unittest
 # Project description
 ## Goal
 The main goal of this program is to load two matrices from the input file, summarize them, and dump a result matrix to the output file.
+
+# Quick start guide
+## Command line interface
+```
+python -m matrix_sum -i /path/to/input/file -o /path/to/output/file
+```
+## Input file example
+```
+{
+    "a": [
+        [0, 0],
+        [0, 0]
+    ],
+    "b": [
+        [0, 0],
+        [0, 0]
+    ]
+}
+```
